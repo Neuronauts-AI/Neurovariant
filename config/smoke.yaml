@@ -1,0 +1,9 @@
+# Smoke-test configuration: points every path at data_smoke/ and results_smoke/
+paths:
+  final: data_smoke/final
+  enriched: data_smoke/enriched
+  track_c: data_smoke/track_c
+  results: results_smoke
+model:
+  n_trials: 5
+  n_bootstrap: 100

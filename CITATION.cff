@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "NeuroVariant: leakage-controlled missense variant pathogenicity classification"
+message: "If you use this software, please cite the preprint and this repository."
+type: software
+authors:
+  - name: "AUGM Neuronauts AI"
+repository-code: "https://github.com/Neuronauts-AI/Neurovariant-"
+license: Apache-2.0
+version: 1.0.0
+date-released: "2026-09-02"
+keywords:
+  - missense variants
+  - pathogenicity prediction
+  - ClinVar
+  - gnomAD
+  - circularity
+  - gradient boosting

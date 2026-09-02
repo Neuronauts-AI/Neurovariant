@@ -1,0 +1,42 @@
+# NeuroVariant preprint pipeline — single configuration file.
+# Every script reads this; CLI flags override individual keys.
+
+seed: 42
+
+panels: [general, cancer, pah, cftr]
+
+# The general panel excludes every gene of the specialty panels so that
+# panels are variant- and gene-disjoint from each other.
+general_excludes_specialty_genes: true
+
+# Balanced sampling targets (pathogenic / benign) per panel and side.
+panel_targets:
+  general: {train_path: 1500, train_benign: 1500, test_path: 1000, test_benign: 1000}
+  cancer:  {train_path: 200,  train_benign: 200,  test_path: 100,  test_benign: 100}
+  pah:     {train_path: 200,  train_benign: 200,  test_path: 100,  test_benign: 100}
+  cftr:    {train_path: 70,   train_benign: 70,   test_path: 30,   test_benign: 30}
+
+# Experimental matrix = split_schemes × feature_sets  (4 runs)
+#   gene    — gene-disjoint train/test (primary; guards type-2 circularity)
+#   variant — random variant-level split (secondary; classical protocol)
+#   core    — all features EXCEPT published in-silico predictors (primary;
+#             guards type-1 circularity)
+#   full    — all features incl. REVEL/CADD/PolyPhen/SIFT/AlphaMissense
+split_schemes: [gene, variant]
+feature_sets: [core, full]
+
+model:
+  n_folds: 5
+  n_trials: 200            # Optuna trials per learner (use --fast for 15)
+  calibration_fraction: 0.15
+  min_sensitivity: 0.90
+  variance_threshold: 0.01
+  correlation_threshold: 0.95
+  n_bootstrap: 2000
+  shap_max_display: 20
+
+paths:
+  final: data/final
+  enriched: data/enriched
+  track_c: data/track_c
+  results: results

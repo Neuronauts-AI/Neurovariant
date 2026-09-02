@@ -1,0 +1,86 @@
+{
+  "description": "Pipeline core function test cases — pre-optimization baseline",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "group": "assign_label",
+      "description": "Açık pathogenic string → 1",
+      "function": "assign_label",
+      "input": "Pathogenic",
+      "expected": 1
+    },
+    {
+      "id": "TC-02",
+      "group": "assign_label",
+      "description": "Açık benign string → 0",
+      "function": "assign_label",
+      "input": "Benign",
+      "expected": 0
+    },
+    {
+      "id": "TC-03",
+      "group": "assign_label",
+      "description": "Conflicting interpretations → None (EXCLUDE_SIG içeriyor)",
+      "function": "assign_label",
+      "input": "Conflicting interpretations of pathogenicity",
+      "expected": null
+    },
+    {
+      "id": "TC-04",
+      "group": "assign_label",
+      "description": "Hem pathogenic hem benign varsa → None",
+      "function": "assign_label",
+      "input": "Pathogenic/Benign",
+      "expected": null
+    },
+    {
+      "id": "TC-05",
+      "group": "assign_label",
+      "description": "None input → None (type guard)",
+      "function": "assign_label",
+      "input": null,
+      "expected": null
+    },
+    {
+      "id": "TC-06",
+      "group": "assign_label_with_confidence",
+      "description": "Likely pathogenic → label=1, confidence=likely",
+      "function": "assign_label_with_confidence",
+      "input": "Likely pathogenic",
+      "expected": [1, "likely"]
+    },
+    {
+      "id": "TC-07",
+      "group": "assign_label_with_confidence",
+      "description": "Hard pathogenic → label=1, confidence=hard",
+      "function": "assign_label_with_confidence",
+      "input": "Pathogenic",
+      "expected": [1, "hard"]
+    },
+    {
+      "id": "TC-08",
+      "group": "extract_ref_alt",
+      "description": "Standart HGVS c.35G>T notasyonundan G ve T çekilmeli",
+      "function": "extract_ref_alt",
+      "input": "NM_004985.5(KRAS):c.35G>T (p.Gly12Val)",
+      "expected": ["G", "T"]
+    },
+    {
+      "id": "TC-09",
+      "group": "is_missense",
+      "description": "Geçerli missense HGVS → True",
+      "function": "is_missense",
+      "input": "NM_004985.5(KRAS):c.35G>T (p.Gly12Val)",
+      "expected": true
+    },
+    {
+      "id": "TC-10",
+      "group": "is_missense",
+      "description": "Stop kazanımı (Ter) → False (NON_MISSENSE_RE yakalamalı)",
+      "function": "is_missense",
+      "input": "NM_000527.5(LDLR):c.907T>A (p.Cys303Ter)",
+      "expected": false
+    }
+  ]
+}

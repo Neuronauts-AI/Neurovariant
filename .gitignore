@@ -1,0 +1,16 @@
+data/
+data_smoke/
+results/
+results_smoke/
+logs/
+tests/output/
+*.gz
+*.fasta
+*.tab
+*.zip
+*.pkl
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/

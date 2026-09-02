@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "run_date": "2026-05-09T15:41:38.484749",
+    "source": "scripts (pre-optimization)",
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "TC-01",
+      "function": "assign_label",
+      "input": "Pathogenic",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "id": "TC-02",
+      "function": "assign_label",
+      "input": "Benign",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "id": "TC-03",
+      "function": "assign_label",
+      "input": "Conflicting interpretations of pathogenicity",
+      "expected": null,
+      "actual": null,
+      "passed": true
+    },
+    {
+      "id": "TC-04",
+      "function": "assign_label",
+      "input": "Pathogenic/Benign",
+      "expected": null,
+      "actual": null,
+      "passed": true
+    },
+    {
+      "id": "TC-05",
+      "function": "assign_label",
+      "input": null,
+      "expected": null,
+      "actual": null,
+      "passed": true
+    },
+    {
+      "id": "TC-06",
+      "function": "assign_label_with_confidence",
+      "input": "Likely pathogenic",
+      "expected": [
+        1,
+        "likely"
+      ],
+      "actual": [
+        1,
+        "likely"
+      ],
+      "passed": true
+    },
+    {
+      "id": "TC-07",
+      "function": "assign_label_with_confidence",
+      "input": "Pathogenic",
+      "expected": [
+        1,
+        "hard"
+      ],
+      "actual": [
+        1,
+        "hard"
+      ],
+      "passed": true
+    },
+    {
+      "id": "TC-08",
+      "function": "extract_ref_alt",
+      "input": "NM_004985.5(KRAS):c.35G>T (p.Gly12Val)",
+      "expected": [
+        "G",
+        "T"
+      ],
+      "actual": [
+        "G",
+        "T"
+      ],
+      "passed": true
+    },
+    {
+      "id": "TC-09",
+      "function": "is_missense",
+      "input": "NM_004985.5(KRAS):c.35G>T (p.Gly12Val)",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "id": "TC-10",
+      "function": "is_missense",
+      "input": "NM_000527.5(LDLR):c.907T>A (p.Cys303Ter)",
+      "expected": false,
+      "actual": false,
+      "passed": true
+    }
+  ]
+}
